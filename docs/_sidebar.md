@@ -1,12 +1,7 @@
-- Getting started
+- [Page 1](page1.md)
 
-  - [](page1.md)
+- [Page 2](page2.md)
 
-- Customization
+- [Page 3](page3.md)
 
-  - [](page2.md)
-
-- Guide
-
-  - [](page3.md)
-  - [](page4.md)
+- [Page 4](page4.md)
