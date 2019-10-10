@@ -45,7 +45,6 @@
       hook.beforeEach(function(content) {
         // Invoked each time before parsing the Markdown file.
         // ...
-        param_b = vars["B"];
         return content.replace(/\$PARAM_A\$/gsm, param_a)
                   .replace(/\$PARAM_B\$/gsm, param_b)
                   .replace(/\$PARAM_C\$/gsm, param_c)
