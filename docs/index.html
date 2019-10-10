@@ -29,9 +29,17 @@
     function(hook) {
 
       hook.init(function() {
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-            vars[key] = value;
-        });
+        var url = new URL(window.location.href);
+        var searchParams = new URLSearchParams(url.search);
+        if (searchParams.has("param_a")) {
+          param_a = searchParams.get("param_a");
+        }
+        if (searchParams.has("param_b")) {
+          param_a = searchParams.get("param_b");
+        }
+        if (searchParams.has("param_c")) {
+          param_a = searchParams.get("param_c");
+        }
       });
 
       hook.beforeEach(function(content) {
