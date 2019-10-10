@@ -16,15 +16,7 @@
   var param_b;
   var param_c;
 
-  function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
-param_b = vars["B"];
+  var vars = {};
 
     window.$docsify = {
       loadSidebar: 'toc.md',
@@ -37,12 +29,15 @@ param_b = vars["B"];
     function(hook) {
 
       hook.init(function() {
-        // Called when the script starts running, only trigger once, no arguments,
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
       });
 
       hook.beforeEach(function(content) {
         // Invoked each time before parsing the Markdown file.
         // ...
+        param_b = vars["B"];
         return content.replace(/\$PARAM_A\$/gsm, param_a)
                   .replace(/\$PARAM_B\$/gsm, param_b)
                   .replace(/\$PARAM_C\$/gsm, param_c)
