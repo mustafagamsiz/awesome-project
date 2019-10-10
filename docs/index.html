@@ -11,6 +11,10 @@
 <body>
   <div id="app"></div>
   <script>
+
+  var param_a = "A-PaaS";
+  var param_b;
+
     window.$docsify = {
       loadSidebar: 'toc.md',
       autoHeader: true,
@@ -21,12 +25,16 @@
       plugins: [
     function(hook) {
 
+      hook.init(function() {
+        // Called when the script starts running, only trigger once, no arguments,
+      });
+
       hook.beforeEach(function(content) {
         // Invoked each time before parsing the Markdown file.
         // ...
-        return content.replace(/\$PARAM_A\$/gsm, "A-PaaS")
-                  .replace(/\$PARAM_B\$/gsm, "B-PaaS")
-                  .replace(/\$PARAM_C\$/gsm, "C-PaaS")
+        return content.replace(/\$PARAM_A\$/gsm, param_a)
+                  .replace(/\$PARAM_B\$/gsm, param_b)
+                  .replace(/\$PARAM_C\$/gsm, param_c)
                   .replace(/---(.*?)---/gsm, '');
         //return content;
       });
