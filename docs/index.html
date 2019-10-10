@@ -16,6 +16,16 @@
   var param_b;
   var param_c;
 
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+param_b = vars["B"];
+
     window.$docsify = {
       loadSidebar: 'toc.md',
       autoHeader: true,
