@@ -24,9 +24,9 @@
       hook.beforeEach(function(content) {
         // Invoked each time before parsing the Markdown file.
         // ...
-        return content.replace(/\PARAM_A\$/gsm, "A-PaaS")
-                  .replace(/\PARAM_B\$/gsm, "B-PaaS")
-                  .replace(/\PARAM_C\$/gsm, "C-PaaS")
+        return content.replace(/\$PARAM_A\$/gsm, "A-PaaS")
+                  .replace(/\$PARAM_B\$/gsm, "B-PaaS")
+                  .replace(/\$PARAM_C\$/gsm, "C-PaaS")
                   .replace(/---(.*?)---/gsm, '');
         //return content;
       });
