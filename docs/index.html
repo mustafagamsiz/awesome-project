@@ -47,10 +47,10 @@
       hook.beforeEach(function(content) {
         // Invoked each time before parsing the Markdown file.
         // ...
-        return content.replace(/\$PARAM_A\$/gsm, param_a)
-                  .replace(/\$PARAM_B\$/gsm, param_b)
-                  .replace(/\$PARAM_C\$/gsm, param_c)
-                  .replace(/---(.*?)---/gsm, '');
+        return content.replace(/\$PARAM_A\$/g, param_a)
+                  .replace(/\$PARAM_B\$/g, param_b)
+                  .replace(/\$PARAM_C\$/g, param_c)
+                  .replace(/---(.*?)---/g, '');
         //return content;
       });
 
