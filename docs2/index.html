@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Awasome Android Library 1.0 Guide</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+
+  var param_a = "A-PaaS";
+  var param_b;
+  var param_c;
+
+  var vars = {};
+
+    window.$docsify = {
+      loadSidebar: 'toc.md',
+      autoHeader: true,
+      maxLevel: 4,
+      subMaxLevel: 3,
+      auto2top: true,
+      name: 'User Guide',
+      nameLink: window.location.href,
+      repo: '',
+      plugins: [
+    function(hook) {
+
+      hook.init(function() {
+        var url = new URL(window.location.href);
+        var searchParams = new URLSearchParams(url.search);
+        if (searchParams.has("param_a")) {
+          param_a = searchParams.get("param_a");
+        }
+        if (searchParams.has("param_b")) {
+          param_b = searchParams.get("param_b");
+        }
+        if (searchParams.has("param_c")) {
+          param_c = searchParams.get("param_c");
+        }
+      });
+
+      hook.beforeEach(function(content) {
+        // Invoked each time before parsing the Markdown file.
+        // ...
+        return content.replace(/\$PARAM_A\$/g, param_a)
+                  .replace(/\$PARAM_B\$/g, param_b)
+                  .replace(/\$PARAM_C\$/g, param_c)
+                  .replace(/---(.*?)---/g, '');
+        //return content;
+      });
+
+    }
+  ]
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+</body>
+</html>
