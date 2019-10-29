@@ -46,10 +46,14 @@
             // ...
             var temp = content.replace(/---([^]*?)---/g, '');
 
-            for (const key of params.keys()) {
-              temp = temp.replace(/\$KANDY\$/g, params.get('KANDY'));
+            //for (const key of params.keys()) {
               //temp = temp.replace(new RegExp('$' + key + '$', 'g'), params.get(key));
-            }
+            //}
+
+            temp = temp.replace(/\$KANDY\$/g, params.get('KANDY'));
+            temp = temp.replace(/\$KANDYFQDN\$/g, params.get('KANDYFQDN'));
+            temp = temp.replace(/\$KANDYICE1\$/g, params.get('KANDYICE1'));
+            temp = temp.replace(/\$KANDYICE2\$/g, params.get('KANDYICE2'));
 
             return temp;
           });
