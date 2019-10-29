@@ -11,13 +11,28 @@
 <body>
   <div id="app"></div>
   <script>
+
+    var params = new Map();
+    params.set('KANDY', 'Kandy CPaaS');
+    params.set('KANDYFQDN', 'oauth-cpaas.att.com');
+
+    var url = new URL(window.location.href);
+    var searchParams = new URLSearchParams(url.search);
+
+    for (const key of params.keys()) {
+      if (searchParams.has(key)) {
+        params.set(key, searchParams.get(key);
+      }
+    }
+
     window.$docsify = {
-      loadSidebar: true,
+      loadSidebar: 'toc.md',
       autoHeader: true,
-      subMaxLevel: 2,
+      maxLevel: 4,
+      subMaxLevel: 3,
       auto2top: true,
-      homepage: 'GetStarted.md',
-      name: 'Kandy CPaaS Android SDK - User Guide',
+      name: params.get('KANDY') + ' Android SDK - User Guide',
+      nameLink: window.location.href,
       repo: '',
       plugins: [
     function(hook) {
@@ -25,7 +40,7 @@
       hook.beforeEach(function(content) {
         // Invoked each time before parsing the Markdown file.
         // ...
-        return content.replace(/\$KANDY\$/gsm, "CPaaS").replace(/---(.*?)---/gsm, '');
+        return content.replace(/\$KANDY\$/gsm, params.get('KANDY')).replace(/---(.*?)---/gsm, '');
       });
 
     }
