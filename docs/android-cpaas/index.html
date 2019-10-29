@@ -47,7 +47,7 @@
             var temp = content.replace(/---(.*?)---/g, '');
 
             for (const key of params.keys()) {
-              temp = temp.replace(new RegExp('\$' + key + '\$', 'g'), params.get('KANDY'));
+              temp = temp.replace(new RegExp('$' + key + '$', 'g'), params.get(key));
             }
 
             return temp;
