@@ -1,3 +1,10 @@
+---
+  topics:
+  - title: Creating the Android project
+    body: In this section you will learn how to create the Android project using Android Studio.
+  - title: Using the $KANDY$ Mobile SDK in the Android project
+    body: In this section you will learn how to use the $KANDY$ Mobile SDK in the Android project.
+---
 # Get Started
 
 This section provides an example of creating your Android project and using the $KANDY$ Mobile SDK in your project. Android Studio 3.4.2 is used for this example, but you may use your development environment of choice to create your project.
