@@ -15,6 +15,8 @@
     var params = new Map();
     params.set('KANDY', 'Kandy CPaaS');
     params.set('KANDYFQDN', 'oauth-cpaas.att.com');
+    params.set('KANDYICE1', 'turns:turn-ucc-1.genband.com:443?transport=tcp');
+    params.set('KANDYICE2', 'turns:turn-ucc-2.genband.com:443?transport=tcp');
 
     var url = new URL(window.location.href);
     var searchParams = new URLSearchParams(url.search);
@@ -25,13 +27,15 @@
       }
     }
 
+    document.title = params.get('KANDY') + ' Android SDK - User Guide';
+
     window.$docsify = {
       loadSidebar: 'toc.md',
       autoHeader: true,
       maxLevel: 4,
-      subMaxLevel: 3,
+      subMaxLevel: 2,
       auto2top: true,
-      name: params.get('KANDY') + ' Android SDK - User Guide',
+      name: document.title,
       nameLink: window.location.href,
       repo: '',
       plugins: [
@@ -40,7 +44,7 @@
       hook.beforeEach(function(content) {
         // Invoked each time before parsing the Markdown file.
         // ...
-        return content.replace(/\$KANDY\$/gsm, params.get('KANDY')).replace(/---(.*?)---/gsm, '');
+        return content.replace(/\$KANDY\$/g, params.get('KANDY')).replace(/---(.*?)---/g, '');
       });
 
     }
