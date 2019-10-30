@@ -40,7 +40,7 @@ This section provides an example of creating your Android project and using the 
 
 ### Create your Android project
 
-The following procedure uses Android Studio IDE to create a simple application which can use Anonymous Call MobileSDK. 
+The following procedure uses Android Studio IDE to create a simple application which can use Anonymous Call MobileSDK.
 
 1. Open the development environment (in this example, Android Studio).
 2. Click **Start a new Android Studio project**.
@@ -66,11 +66,11 @@ The following procedure uses Android Studio IDE to create a simple application w
 
 ### Adding Anonymous Call Mobile SDK dependency to your project
 
-There are 2 option to add Anonymous Call Mobile SDK dependency to your project. You can add Anonymous Call Mobile SDK dependency from github repository or you can add it your project manually. This document will explain both options in detail. 
+There are 2 option to add Anonymous Call Mobile SDK dependency to your project. You can add Anonymous Call Mobile SDK dependency from github repository or you can add it your project manually. This document will explain both options in detail.
 
 
 #### Adding Anonymous Call Mobile SDK dependency to your project from GitHub repository
-1. Add Anonymous Call Mobile SDK repository url to your root level **build.gradle** file. 
+1. Add Anonymous Call Mobile SDK repository url to your root level **build.gradle** file.
 
 
 	```
@@ -85,7 +85,7 @@ There are 2 option to add Anonymous Call Mobile SDK dependency to your project. 
    		}
 	}
 	```
-	
+
 ![alt text](images/get_started_4.png "")
 
 2. Add dependcy of Anonymous Call Mobile SDK to your app level **build.gradle** file.
@@ -100,7 +100,7 @@ There are 2 option to add Anonymous Call Mobile SDK dependency to your project. 
 	---
 	**NOTE**
 
-	Check latest version of Anonymous Call Mobile SDK from [GitHub](https://github.com/Kandy-IO/kandy-anonymous-android-sdk). 
+	Check latest version of Anonymous Call Mobile SDK from [GitHub](https://github.com/Kandy-IO/kandy-anonymous-android-sdk).
 
 	---
 
@@ -135,7 +135,7 @@ There are 2 option to add Anonymous Call Mobile SDK dependency to your project. 
 ### Adding Java 8 support
  An Android application project must be compatible with Java 8 when it is using Mobile SDK library. This necessity comes from the WebRTC library, its code is dependent on some Java 8 features. In order to set this compliance, open **build.gradle** file, located under **app** module of **AnonymousCallMobileSDKDemoApp** project. Add the configuration script below to the file.
 
-	```	
+	```
 	android{
 		compileOptions {
         targetCompatibility 1.8
@@ -143,7 +143,7 @@ There are 2 option to add Anonymous Call Mobile SDK dependency to your project. 
     }
 	}
 	```
-	
+
 ![alt text](images/get_started_7.png "")
 
 
@@ -235,15 +235,16 @@ public class MainActivity extends Activity {
 public void configExample() {
     Configuration configuration = Configuration.getInstance();
 
-    configuration.setRestServerIp("rbbn.com/anonymouscallmobilesdkdemo");
+    configuration.setRestServerIp("$SUBSCRIPTIONFQDN$");
     configuration.setRestServerPort(443);
     configuration.setRequestHttpProtocol(false);
 
     ICEServers iceServers = new ICEServers();
-    iceServers.addICEServer("stun:rbbn.com/anonymouscallmobilesdkdemo:3478");
+    iceServers.addICEServer("$ICESERVER1$");
+    iceServers.addICEServer("$ICESERVER2$");
     configuration.setICEServers(iceServers);
 
-    configuration.setWebSocketServerIp("rbbn.com/anonymouscallmobilesdkdemo");
+    configuration.setWebSocketServerIp("$WEBSOCKETFQDN$");
     configuration.setWebSocketServerPort(443);
     configuration.setSecuredWSProtocol(true);
 }
@@ -406,19 +407,19 @@ public class Demo {
         //set minimum Configuration values
 
         //server IP value for SPiDR/Kandy Link
-        configuration.setRestServerIp("127.0.0.1");
+        configuration.setRestServerIp("$SUBSCRIPTIONFQDN$");
         //server port value for SPiDR/Kandy Link
         configuration.setRestServerPort(443);
 
          //IP used in websocket connection creation
-        configuration.setWebSocketServerIp("127.0.0.1");
+        configuration.setWebSocketServerIp("$WEBSOCKETFQDN$");
         //port used in websocket connection creation
         configuration.setWebSocketServerPort(443);
 
         // SPiDR/Kandy Link TURN server using udp transport in WebRTC's peer connection
         ICEServers iceServers = new ICEServers();
-        iceServers.addICEServer("turns:turn.spidr.com:443?transport=tcp");
-        iceServers.addICEServer("stun:stun1.spidr.com:3478?transport=udp");
+        iceServers.addICEServer("$ICESERVER1$");
+        iceServers.addICEServer("$ICESERVER2$");
         configuration.setICEServers(iceServers);
     }
 }
@@ -527,11 +528,11 @@ Use the addICEServer:username:password: method of the ICEServers object to defin
 
 ```java
 ICEServers servers = new ICEServers();
-servers.addICEServer(“stun:stun1.spidr.com:8322”);
+servers.addICEServer("stun:stun1.spidr.com:8322");
 Configuration.getInstance().setICEServers(servers);
 // or
 ICEServers servers = Configuration.getInstance().getICEServers();
-servers.addICEServer(“stun:stun1.spidr.com:8322”);
+servers.addICEServer("stun:stun1.spidr.com:8322");
 ```
 
 ###### Example: Add a TURN server
@@ -617,7 +618,7 @@ public void establishCallFailed(OutgoingCallInterface outgoingCall, MobileError 
 
 Use the Time-Limited Token Based Anonymous Call functionality to place audio only or audio/video calls anonymously (without logging in with a username and password). A pre-shared (provisioned) key is used to obfuscate the time in the token - once handed out, SPiDR/KL will only allow the token to be used to access/subscribe to the services for a limited time (i.e. within 10 minutes of UTC time in token). This helps anonymous call functionality to be more secure.
 
-Application developer will be responsible for token generation. Token can be generated using the “Security Key” defined in SPiDR/KL and must be supplied to the SDK to start a call.
+Application developer will be responsible for token generation. Token can be generated using the "Security Key" defined in SPiDR/KL and must be supplied to the SDK to start a call.
 
 ###### Example: Establishing a time-limited token based anonymous call
 
@@ -1149,13 +1150,13 @@ public void sendParametersToCall(CallInterface call, Map<String, String> customP
 
 ### Set ICE options
 
-The Configuration class has an “iceOption” attribute used to determine the ICE behavior. The following are the available ICE options:
+The Configuration class has an "iceOption" attribute used to determine the ICE behavior. The following are the available ICE options:
 
 * ICE_TRICKLE: Trickle ICE completes signaling without waiting for candidate collection. Clients send candidates to one another as they’re discovered (after the call signaling is complete and the call is established). This provides faster call setup times but may cause media delays.
 
 * ICE_VANILLA: The default value. The clients must collect and send all candidates before initializing signaling. This process, in addition to the particular network configuration and the number of interfaces in the clients’ devices, can cause call setup delays.
 
-If the “ICE_TRICKLE” option is selected, the “ICECollectionTimeout” value is not used. If the call ends before all ICE candidates are collected, the MobileSDK does not listen to the TURN/STUN server since the peer connection is closed.
+If the "ICE_TRICKLE" option is selected, the "ICECollectionTimeout" value is not used. If the call ends before all ICE candidates are collected, the MobileSDK does not listen to the TURN/STUN server since the peer connection is closed.
 
 <div style="border-style:solid; page-break-inside: avoid;">
 <h5>WARNING</h5>
@@ -1245,7 +1246,7 @@ Using "CodecToReplace" feature of Mobile SDK, applications can manipulate the co
 
 Note that, it is strongly recommended **not** to use this API during an ongoing call operation (e.g. mid-call events). A configuration change will affect the ongoing call and this may cause unstable WebRTC behavior.
 
-For the replacing codec payload number feature, the MobileSDK user have to create an instance of the CodecToReplace model class and set the codecDefinition (the definition of the codec that can be seen on the rtpmap in SDP, e.g. “telephone-event/8000” or “opus/48000/2”) and payloadNumber (e.g. “101” or “96” etc.) parameters. After creation of CodecToReplace object(s), they should be set to Mobile SDK through `setReplaceCodecSet` API on `Configuration` class.
+For the replacing codec payload number feature, the MobileSDK user have to create an instance of the CodecToReplace model class and set the codecDefinition (the definition of the codec that can be seen on the rtpmap in SDP, e.g. "telephone-event/8000" or "opus/48000/2") and payloadNumber (e.g. "101" or "96" etc.) parameters. After creation of CodecToReplace object(s), they should be set to Mobile SDK through `setReplaceCodecSet` API on `Configuration` class.
 
 After the Mobile SDK user set the ReplaceCodecSet configuration, all of the local offer call SDPs will be generated with the specified codec payload numbers and there will be no modification done on remote SDPs and local answer SDPs.
 
@@ -1266,14 +1267,14 @@ After the Mobile SDK user set the ReplaceCodecSet configuration, all of the loca
 try {
   List<CodecToReplace> codecsToReplace = new ArrayList<>();
 
-  codecsToReplace.add(CodecToReplace.create(“telephone-event/8000”, “101”));
-  codecsToReplace.add(CodecToReplace.create(“opus/48000/2”, “114”));
-  codecsToReplace.add(CodecToReplace.create(“VP8/90000”, “100”));
+  codecsToReplace.add(CodecToReplace.create("telephone-event/8000", "101"));
+  codecsToReplace.add(CodecToReplace.create("opus/48000/2", "114"));
+  codecsToReplace.add(CodecToReplace.create("VP8/90000", "100"));
 
   Map<String, String> customProperties = new HashMap<>();
-  customProperties.put(“profile-level-id”, “42e01f”);
-  customProperties.put(“packetization-mode”, “1”);
-  codecsToReplace.add(CodecToReplace.create(“H264/90000”, “120”, customProperties));
+  customProperties.put("profile-level-id", "42e01f");
+  customProperties.put("packetization-mode", "1");
+  codecsToReplace.add(CodecToReplace.create("H264/90000", "120", customProperties));
 
   Configuration.getInstance().setReplaceCodecSet(codecsToReplace);
 } catch (MobileException ex) {
@@ -1372,7 +1373,7 @@ a=rtpmap:106 ulpfec/90000
 …
 ```
 
- * A simple replacement as <”opus/48000/2”, “114”> and <”telephone-event/48000”, “101”> :
+ * A simple replacement as <"opus/48000/2", "114"> and <"telephone-event/48000", "101"> :
 
 ```
 …
@@ -1461,7 +1462,7 @@ a=rtpmap:106 ulpfec/90000
 …
 ```
 
- * For H264, there are 2 codecs with the same description, so another property should be introduced for comparison in order to define which one to replace. So replacement should be defined as <”H264/90000”, “126”, “profile-level-id=42e029”>:
+ * For H264, there are 2 codecs with the same description, so another property should be introduced for comparison in order to define which one to replace. So replacement should be defined as <"H264/90000", "126", "profile-level-id=42e029">:
 
 ```
 …
@@ -1549,7 +1550,7 @@ a=fmtp:124 apt=104
 a=rtpmap:106 ulpfec/90000
 ```
 
- * If <”opus/48000/2”, “105”> provided through this configuration, there will be a conflict with “CN/16000” in the original SDP. In this case Mobile SDK will swap the payload numbers of these codecs as follows:
+ * If <"opus/48000/2", "105"> provided through this configuration, there will be a conflict with "CN/16000" in the original SDP. In this case Mobile SDK will swap the payload numbers of these codecs as follows:
 
 ```
 …
@@ -1782,8 +1783,8 @@ Use the `callAdditionalInfoChanged` callback method in `callApplicationListener`
 | Field  | Description                                                   |
 |--------|---------------------------------------------------------------|
 | action | The primary category of information                           |
-| type   | The “action” sub-category                                     |
-| callId | The identifier for the related call, which is different than the call session id. This id is either randomly generated by the Mobile SDK or set by the user. <br><br> **Note:** The call identifier is obtained using the “getId” method rather than the “getCallId” method (which would return the call session identifier)  |
+| type   | The "action" sub-category                                     |
+| callId | The identifier for the related call, which is different than the call session id. This id is either randomly generated by the Mobile SDK or set by the user. <br><br> **Note:** The call identifier is obtained using the "getId" method rather than the "getCallId" method (which would return the call session identifier)  |
 | time   | Occurrence time (epoch in milliseconds)                       |
 
 ###### Example: Additional Info
@@ -1797,9 +1798,9 @@ Use the `callAdditionalInfoChanged` callback method in `callApplicationListener`
 }
 ```
 
-The following list shows each available “action” category and its “type” sub-category:
+The following list shows each available "action" category and its "type" sub-category:
 
-* **iceTimeout:** Includes types for ICE collection timeout (assuming “2x” is the timeout configuration and “t” is when the ICE process ended)
+* **iceTimeout:** Includes types for ICE collection timeout (assuming "2x" is the timeout configuration and "t" is when the ICE process ended)
     * **iceNormal:** Time when the ICE collection process ended normally (period of t<x)
     * **iceOneRelay:** Time when the ICE collection process was interrupted by a timeout with at least one (audio and video) relay candidate (period of x<t<2x)
     * **iceNoRelay:** Time when the ICE collection process was interrupted by a timeout without a relay candidate (period of t=2x)
@@ -1974,7 +1975,7 @@ public class Demo {
         Configuration configuration = Configuration.getInstance();
 
         //server IP value for SPiDR
-        configuration.setRestServerIp("127.0.0.1");
+        configuration.setRestServerIp("$SUBSCRIPTIONFQDN$");
         //server port value for SPiDR
         configuration.setRestServerPort(443);
         //logger implementation defined by the application
@@ -1985,7 +1986,7 @@ public class Demo {
         //connection type for notification
         configuration.setNotificationType(NotificationType.WebSocket);
          //IP used in websocket connection creation
-        configuration.setWebSocketServerIp("127.0.0.1");
+        configuration.setWebSocketServerIp("$WEBSOCKETFQDN$");
         //port used in websocket connection creation
         configuration.setWebSocketServerPort(443);
         //set to WS or WSS protocol
@@ -1993,12 +1994,8 @@ public class Demo {
 
         // SPiDR/Kandy Link TURN server in WebRTC's peer connection
         ICEServers iceServers = new ICEServers();
-        iceServers.addICEServer("turns:turn.spidr.com:443?transport=tcp");
-        iceServers.addICEServer("turns:turn2.spidr.com:443?transport=tcp");
-
-        // Adding SPiDR/Kandy Link STUN server
-        iceServers.addICEServer("stun:stun1.spidr.com:3478?transport=udp");
-        iceServers.addICEServer("stun:turn2.spidr.com:3478?transport=udp");
+        iceServers.addICEServer("$ICESERVER1$");
+        iceServers.addICEServer("$ICESERVER2$");
 
         configuration.setICEServers(iceServers);
 

@@ -152,7 +152,7 @@ Objective-C
     //password for authorization
     configuration.password = @"password";
     //server IP value for SPiDR/Kandy Link
-    configuration.restServerIP = @"127.0.0.1";
+    configuration.restServerIP = @"$SUBSCRIPTIONFQDN$";
     //server port value for SPiDR/Kandy Link
     configuration.restServerPort = @"443";
     //logger implementation defined by application
@@ -160,14 +160,14 @@ Objective-C
 
     //IP used in websocket connection creation.
     // If not provided, Rest Server IP will be used
-    configuration.webSocketServerIP = @"127.0.0.1";
+    configuration.webSocketServerIP = @"$WEBSOCKETFQDN$";
     //port used in websocket connection creation
     configuration.webSocketServerPort = @"443";
 
     // add ICE Server
     SMICEServers * servers = [[SMICEServers alloc] init];
-    [servers addICEServer:@"turns:turn.spidr.com:443?transport=tcp"];
-    [servers addICEServer:@"stun:stun1.spidr.com:3478?transport=udp"];
+    [servers addICEServer:@"$ICESERVER1$"];
+    [servers addICEServer:@"$ICESERVER2$"];
     [configuration setICEServers:servers];
 }
 ```
@@ -192,7 +192,7 @@ func manageConfiguration() {
     //password for authorization
     configuration.password = "password"
     //server IP value for SPiDR/Kandy Link
-    configuration.restServerIP = "127.0.0.1"
+    configuration.restServerIP = "$SUBSCRIPTIONFQDN$"
     //server port value for SPiDR/Kandy Link
     configuration.restServerPort = "443"
     //logger implementation defined by application
@@ -200,14 +200,14 @@ func manageConfiguration() {
 
     //IP used in websocket connection creation
     // If not provided, Rest Server IP will be used
-    configuration.webSocketServerIP  = "127.0.0.1"
+    configuration.webSocketServerIP  = "$WEBSOCKETFQDN$"
     //port used in websocket connection creation
     configuration.webSocketServerPort  = "443"
 
     // add ICE Server
     let servers = SMICEServers()
-    servers.addICEServer("turns:turn.spidr.com:443?transport=tcp")
-    servers.addICEServer("stun:stun1.spidr.com:3478?transport=udp")
+    servers.addICEServer("$ICESERVER1$")
+    servers.addICEServer("$ICESERVER2$")
     configuration.iceServers = servers
 }
 ```
@@ -390,7 +390,7 @@ class RegistrationController: NSObject, SMRegistrationApplicationDelegate {
     func notificationStateChanged(_ notificationState: SMNotificationStates) {
         //Handle notification state changes
     }
-    
+
     func internalErrorDidOccur(_ error: SMMobileError) {
     	//This method will be called, if any internal error occurs when MobileSDK sends a request to SPiDR
     }
@@ -2342,7 +2342,7 @@ Using "CodecToReplace" feature of Mobile SDK, applications can manipulate the co
 
 Note that, it is strongly recommended **not** to use this API during an ongoing call operation (e.g. mid-call events). A configuration change will affect the ongoing call and this may cause unstable WebRTC behavior.
 
-For the replacing codec payload number feature, the MobileSDK user have to create an instance of the CodecToReplace model class and set the codecDefinition (the definition of the codec that can be seen on the rtpmap in SDP, e.g. “telephone-event/8000” or “opus/48000/2”) and payloadNumber (e.g. “101” or “96” etc.) parameters. After creation of CodecToReplace object(s), they should be set to Mobile SDK through `setReplaceCodecSet` API on `Configuration` class.
+For the replacing codec payload number feature, the MobileSDK user have to create an instance of the CodecToReplace model class and set the codecDefinition (the definition of the codec that can be seen on the rtpmap in SDP, e.g. "telephone-event/8000" or "opus/48000/2") and payloadNumber (e.g. "101" or "96" etc.) parameters. After creation of CodecToReplace object(s), they should be set to Mobile SDK through `setReplaceCodecSet` API on `Configuration` class.
 
 After the Mobile SDK user set the ReplaceCodecSet configuration, all of the local offer call SDPs will be generated with the specified codec payload numbers and there will be no modification done on remote SDPs and local answer SDPs.
 
@@ -2480,7 +2480,7 @@ a=rtpmap:106 ulpfec/90000
 …
 ```
 
- * A simple replacement as <”opus/48000/2”, “114”> and <”telephone-event/48000”, “101”> :
+ * A simple replacement as <"opus/48000/2", "114"> and <"telephone-event/48000", "101"> :
 
 ```
 …
@@ -2569,7 +2569,7 @@ a=rtpmap:106 ulpfec/90000
 …
 ```
 
- * For H264, there are 2 codecs with the same description, so another property should be introduced for comparison in order to define which one to replace. So replacement should be defined as <”H264/90000”, “126”, “profile-level-id=42e029”>:
+ * For H264, there are 2 codecs with the same description, so another property should be introduced for comparison in order to define which one to replace. So replacement should be defined as <"H264/90000", "126", "profile-level-id=42e029">:
 
 ```
 …
@@ -2657,7 +2657,7 @@ a=fmtp:124 apt=104
 a=rtpmap:106 ulpfec/90000
 ```
 
- * If <”opus/48000/2”, “105”> provided through this configuration, there will be a conflict with “CN/16000” in the original SDP. In this case Mobile SDK will swap the payload numbers of these codecs as follows:
+ * If <"opus/48000/2", "105"> provided through this configuration, there will be a conflict with "CN/16000" in the original SDP. In this case Mobile SDK will swap the payload numbers of these codecs as follows:
 
 ```
 …
@@ -3663,7 +3663,7 @@ Objective-C
     //password for authorization
     configuration.password = @"password";
     //server IP value for SPiDR/Kandy Link
-    configuration.restServerIP = @"127.0.0.1";
+    configuration.restServerIP = @"$SUBSCRIPTIONFQDN$";
     //server port value for SPiDR/Kandy Link
     configuration.restServerPort = @"443";
     //logger implementation defined by application
@@ -3674,7 +3674,7 @@ Objective-C
     configuration.connectionType = WEBSOCKET;
 
     //IP used in websocket connection creation
-    configuration.webSocketServerIP = @"127.0.0.1";
+    configuration.webSocketServerIP = @"$WEBSOCKETFQDN$";
     //port used in websocket connection creation
     configuration.webSocketServerPort = @"443";
     //set to WS or WSS protocol
@@ -3682,12 +3682,8 @@ Objective-C
 
     //SPiDR TURN server in WebRTC's peer connection
     SMICEServers *iceServers = [[SMICEServers alloc] init];
-    [iceServers addICEServer:@"turns:turn1.spidr.com:443?transport=tcp"];
-    [iceServers addICEServer:@"turns:turn2.spidr.com:443?transport=tcp"];
-
-    // Adding SPiDR STUN server
-    [iceServers addICEServer:@"stun:turn1.spidr.com:3478?transport=udp"];
-    [iceServers addICEServer:@"stun:turn2.spidr.com:3478?transport=udp"];
+    [iceServers addICEServer:@"$ICESERVER1$"];
+    [iceServers addICEServer:@"$ICESERVER2$"];
 
     configuration.ICEServers = iceServers;
   ```
@@ -3733,7 +3729,7 @@ func manageConfiguration() {
     //password for authorization
     configuration.password = "password"
     //server IP value for SPiDR/Kandy Link
-    configuration.restServerIP = "127.0.0.1"
+    configuration.restServerIP = "$SUBSCRIPTIONFQDN$"
     //server port value for SPiDR/Kandy Link
     configuration.restServerPort = "443"
     //logger implementation defined by application
@@ -3744,7 +3740,7 @@ func manageConfiguration() {
     configuration.connectionType = .websocket
 
     //IP used in websocket connection creation
-    configuration.webSocketServerIP  = "127.0.0.1"
+    configuration.webSocketServerIP  = "$WEBSOCKETFQDN$"
     //port used in websocket connection creation
     configuration.webSocketServerPort  = "443"
     //set to WS or WSS protocol
@@ -3752,12 +3748,8 @@ func manageConfiguration() {
 
     //SPiDR TURN server in WebRTC's peer connection
     let iceServers = SMICEServers()
-    iceServers.addICEServer("turns:turn1.spidr.com:443?transport=tcp")
-    iceServers.addICEServer("turns:turn2.spidr.com:443?transport=tcp")
-
-    // Adding SPiDR STUN server
-    iceServers.addICEServer("stun:turn1.spidr.com:3478?transport=udp")
-    iceServers.addICEServer("stun:turn2.spidr.com:3478?transport=udp")
+    iceServers.addICEServer("$ICESERVER1$")
+    iceServers.addICEServer("$ICESERVER2$")
 
     configuration.iceServers = iceServers;
 
