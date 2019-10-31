@@ -275,9 +275,9 @@ public class MainActivity extends Activity {
 8. Set $KANDY$ configurations for connection.
 
 ```java
-Configuration.getInstance().setUseSecureConnection(useSecureConnection);
-Configuration.getInstance().setRestServerUrl(restServerUrl);
-Configuration.getInstance().setRestServerPort(restServerPort);
+Configuration.getInstance().setUseSecureConnection(true);
+Configuration.getInstance().setRestServerUrl("$KANDYFQDN$");
+Configuration.getInstance().setRestServerPort(443);
 }
 ```
 

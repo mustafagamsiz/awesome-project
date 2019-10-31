@@ -68,7 +68,7 @@ The following procedure uses Android Studio IDE to create a simple application w
 
 There are 2 option to add Anonymous Call Mobile SDK dependency to your project. You can add Anonymous Call Mobile SDK dependency from github repository or you can add it your project manually. This document will explain both options in detail.
 
-#### Adding Anonymous Call Mobile SDK dependency to your project from GitHub repository
+#### Adding the dependency from GitHub repository
 
 1. Add Anonymous Call Mobile SDK repository url to your root level **build.gradle** file.
 
@@ -101,7 +101,7 @@ Check latest version of Anonymous Call Mobile SDK from <a href="https://github.c
 </div>
 <br>
 
-#### Adding Anonymous Call Mobile SDK dependency to your project manually
+#### Adding the dependency manually
 
 1. Download latest Anonymous Call Mobile SDK version from [GitHub](https://github.com/Kandy-IO/kandy-anonymous-android-sdk) and copy **aar** file to your project **lib** folder.
 

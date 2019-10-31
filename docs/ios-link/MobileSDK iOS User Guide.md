@@ -3677,8 +3677,7 @@ Objective-C
     [iceServers addICEServer:@"$ICESERVER2$"];
 
     configuration.ICEServers = iceServers;
-  ```
-  ```obj-c
+
     //Integer value in seconds to limit the ICE collection duration. Default is 0 (no timeout)
     configuration.ICECollectionTimeout = 4;
 
