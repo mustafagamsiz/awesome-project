@@ -121,7 +121,7 @@ The applications which uses $KANDY$ MobileSDK can be built with the XCode 10.2+ 
 import CPaaSSDK
 
 let configuration = CPConfig.sharedInstance()
-configuration.restServerUrl = ""$KANDYFQDN$""
+configuration.restServerUrl = "$KANDYFQDN$"
 configuration.restServerPort = "443"
 configuration.useSecureConnection = true
 ```
@@ -130,7 +130,7 @@ configuration.useSecureConnection = true
 @import CPaaSSDK;
 
 CPConfig *configuration = [CPConfig sharedInstance];
-configuration.restServerUrl = @""$KANDYFQDN$"";
+configuration.restServerUrl = @"$KANDYFQDN$";
 configuration.restServerPort = @"443";
 configuration.useSecureConnection = YES;
 ```
