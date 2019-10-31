@@ -97,7 +97,7 @@ implementation 'com.kandy.mobile:kandyanonymousmobilesdk:{version}'
 
 <div style="border-style:solid; page-break-inside: avoid;">
 <h5>NOTE</h5>
-Check latest version of Anonymous Call Mobile SDK from [GitHub](https://github.com/Kandy-IO/kandy-anonymous-android-sdk).
+Check latest version of Anonymous Call Mobile SDK from <a href="https://github.com/Kandy-IO/kandy-anonymous-android-sdk">GitHub</a>.
 </div>
 <br>
 

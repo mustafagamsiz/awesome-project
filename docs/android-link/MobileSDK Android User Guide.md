@@ -101,7 +101,7 @@ implementation 'com.kandy.mobile:kandylinkmobilesdk:{version}'
 
 <div style="border-style:solid; page-break-inside: avoid;">
 <h5>NOTE</h5>
-Check latest version of MobileSDK from [GitHub](https://github.com/Kandy-IO/kandy-link-android-sdk).
+Check latest version of MobileSDK from <a href="https://github.com/Kandy-IO/kandy-link-android-sdk">GitHub</a>.
 </div>
 <br>
 
