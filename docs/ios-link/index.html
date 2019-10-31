@@ -47,14 +47,9 @@
             // ...
             var temp = content;
 
-            //for (const key of params.keys()) {
-              //temp = temp.replace(new RegExp('$' + key + '$', 'g'), params.get(key));
-            //}
-
-            temp = temp.replace(/\$SUBSCRIPTIONFQDN\$/g, params.get('SUBSCRIPTIONFQDN'));
-            temp = temp.replace(/\$WEBSOCKETFQDN\$/g, params.get('WEBSOCKETFQDN'));
-            temp = temp.replace(/\$ICESERVER1\$/g, params.get('ICESERVER1'));
-            temp = temp.replace(/\$ICESERVER2\$/g, params.get('ICESERVER2'));
+            for (const key of params.keys()) {
+              temp = temp.replace(new RegExp('\\$' + key + '\\$', 'g'), params.get(key));
+            }
 
             return temp;
           });
