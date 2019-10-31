@@ -3,12 +3,6 @@ Version Number: **5.0.0**
 <br>
 Revision Date: **October 2, 2019**
 
-# Table of Contents
-
-@[toc]
-
-<div class="page-break"></div>
-
 ## Mobile SDK overview
 
 The SPiDR/Kandy Link Mobile Software Development Kit (SDK) defines a library implementation supporting SPiDR platform features like registration, notification, call management, instant message, presence management, and WebRTC on iOS. You can use this library implementation to integrate SPiDR/Kandy Link services and WebRTC into your native mobile applications to create new, innovative user experiences.
@@ -37,8 +31,6 @@ This document provides help getting started developing your mobile application u
 
 The following items need to be complete prior to beginning work on your application:
 
-* You have downloaded the MobileSDK package from http://developer.genband.com/MobileSDK .
-* You have extracted the contents of the MobileSDK package and located MobileSDK.framework.
 * Your Xcode development environment is set up and ready for new projects.
 * You know the IP address and port of the SPiDR/Kandy Link server.
 
@@ -95,10 +87,9 @@ This section contains the required steps for beginning your mobile application d
 
 * pod 'KandyLinkMobileSDK'
 
-2. Go to project folder via command line and run "pod install" command and wait for cocoapods to finish installation of MobileSDK ,WebRTC frameworks and their dependencies
+2. Go to project folder via command line and run "pod install" command and wait for cocoapods to finish installation of MobileSDK, WebRTC frameworks and their dependencies
 
 ### Post Installation Steps
-
 
 1. Add usage descriptions for both camera and microphone access should be added to application's Info.plist file.
 

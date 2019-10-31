@@ -43,6 +43,7 @@ This section provides an example of creating your Android project and using the 
 The following procedure uses Android Studio IDE to create a simple application which can use Anonymous Call MobileSDK.
 
 1. Open the development environment (in this example, Android Studio).
+
 2. Click **Start a new Android Studio project**.
 
 ![alt text](images/get_started_1.png "")
@@ -63,89 +64,81 @@ The following procedure uses Android Studio IDE to create a simple application w
 
 ![alt text](images/get_started_3.png "")
 
-
 ### Adding Anonymous Call Mobile SDK dependency to your project
 
 There are 2 option to add Anonymous Call Mobile SDK dependency to your project. You can add Anonymous Call Mobile SDK dependency from github repository or you can add it your project manually. This document will explain both options in detail.
 
-
 #### Adding Anonymous Call Mobile SDK dependency to your project from GitHub repository
+
 1. Add Anonymous Call Mobile SDK repository url to your root level **build.gradle** file.
 
+```
+allprojects {
+  repositories {
+    google()
+    jcenter()
 
-	```
-	allprojects {
-    	repositories {
-        	google()
-        	jcenter()
-
-        	maven {
-         	  url "https://raw.githubusercontent.com/Kandy-IO/kandy-anonymous-android-sdk/master/dist/"
-        	}
-   		}
-	}
-	```
+    maven {
+      url "https://raw.githubusercontent.com/Kandy-IO/kandy-anonymous-android-sdk/master/dist/"
+    }
+  }
+}
+```
 
 ![alt text](images/get_started_4.png "")
 
 2. Add dependcy of Anonymous Call Mobile SDK to your app level **build.gradle** file.
 
-	```
-	implementation 'com.kandy.mobile:kandyanonymousmobilesdk:{version}'
+```
+implementation 'com.kandy.mobile:kandyanonymousmobilesdk:{version}'
+```
 
-	```
+![alt text](images/get_started_5.png "")
 
-	![alt text](images/get_started_5.png "")
-
-	---
-	**NOTE**
-
-	Check latest version of Anonymous Call Mobile SDK from [GitHub](https://github.com/Kandy-IO/kandy-anonymous-android-sdk).
-
-	---
-
+<div style="border-style:solid; page-break-inside: avoid;">
+<h5>NOTE</h5>
+Check latest version of Anonymous Call Mobile SDK from [GitHub](https://github.com/Kandy-IO/kandy-anonymous-android-sdk).
+</div>
+<br>
 
 #### Adding Anonymous Call Mobile SDK dependency to your project manually
 
-
 1. Download latest Anonymous Call Mobile SDK version from [GitHub](https://github.com/Kandy-IO/kandy-anonymous-android-sdk) and copy **aar** file to your project **lib** folder.
 
- ![alt text](images/get_started_6.png "")
-
+![alt text](images/get_started_6.png "")
 
 2. After that you need to inform gradle that your app will use manual aar files. To do that add **flatDir** path to your root level **build.gradle** file as in the example above.
 
-	```
-	flatDir {
-       dirs 'libs'
-   }
-	```
- ![alt text](images/get_started_12.png "")
+```
+flatDir {
+  dirs 'libs'
+}
+```
+
+![alt text](images/get_started_12.png "")
 
 3. Add dependcy of Anonymous Call Mobile SDK to your app level **build.gradle** file with **@aar** prefix.
 
-	```
-	implementation 'com.kandy.mobile:kandyanonymousmobilesdk:{version}@aar'
+```
+implementation 'com.kandy.mobile:kandyanonymousmobilesdk:{version}@aar'
+```
 
-	```
-
-	![alt text](images/get_started_13.png "")
-
+![alt text](images/get_started_13.png "")
 
 ### Adding Java 8 support
- An Android application project must be compatible with Java 8 when it is using Mobile SDK library. This necessity comes from the WebRTC library, its code is dependent on some Java 8 features. In order to set this compliance, open **build.gradle** file, located under **app** module of **AnonymousCallMobileSDKDemoApp** project. Add the configuration script below to the file.
 
-	```
-	android{
-		compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
-	}
-	```
+An Android application project must be compatible with Java 8 when it is using Mobile SDK library. This necessity comes from the WebRTC library, its code is dependent on some Java 8 features. In order to set this compliance, open **build.gradle** file, located under **app** module of **AnonymousCallMobileSDKDemoApp** project. Add the configuration script below to the file.
+
+```
+android{
+  compileOptions {
+    targetCompatibility 1.8
+    sourceCompatibility 1.8
+  }
+}
+```
 
 ![alt text](images/get_started_7.png "")
-
 
 ### Use the Anonymous Call Mobile SDK in your Android project
 

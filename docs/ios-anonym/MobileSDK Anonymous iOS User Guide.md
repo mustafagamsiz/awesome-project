@@ -3,12 +3,6 @@ Version Number: **5.0.0**
 <br>
 Revision Date: **October 2, 2019**
 
-# Table of Contents
-
-@[toc]
-
-<div class="page-break"></div>
-
 ## Anonymous Call Mobile SDK overview
 
 The SPiDR/Kandy Link Anonymous Call Mobile Software Development Kit (SDK) defines a library implementation supporting SPiDR/Kandy Link platform features like anonymous call management (allowing unregistered users to place voice or video calls) and WebRTC on iOS. You can use this library implementation to integrate SPiDR/Kandy Link services and WebRTC into your native mobile applications to create new, innovative user experiences.
@@ -35,14 +29,13 @@ This document provides help getting started developing your mobile application u
 
 The following items need to be complete prior to beginning work on your application:
 
-* You have downloaded the MobileSDKAnonymous package from http://developer.genband.com/MobileSDK .
-* You have extracted the contents of the MobileSDKAnonymous package and located MobileSDKAnonymous.framework.
 * Your Xcode development environment is set up and ready for new projects.
 * You know the IP address and port of the SPiDR/Kandy Link server.
 
 <div class="page-break" />
 
 ## Get Started
+
 ### Installation
 
 This section contains the required steps for beginning your mobile application development and an example of using the Anonymous Call Mobile SDK in Xcode 10.x.
